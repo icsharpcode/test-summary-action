@@ -581,6 +581,7 @@ function parseJunitFile(filename) {
 }
 exports.parseJunitFile = parseJunitFile;
 function parseTrx(xml) {
+    var _a, _b, _c, _d, _e, _f;
     return __awaiter(this, void 0, void 0, function* () {
         if (xml.TestRun.$.xmlns != "http://microsoft.com/schemas/VisualStudio/TeamTest/2010"
             || !Array.isArray(xml.TestRun.Results)) {
@@ -605,20 +606,16 @@ function parseTrx(xml) {
                 const outcome = item.$.outcome;
                 let message = undefined;
                 let details = "";
-                const output = item.Output[0];
-                if ('StdOut' in output) {
-                    details = output.StdOut[0];
-                }
+                const output = (_a = item === null || item === void 0 ? void 0 : item.Output) === null || _a === void 0 ? void 0 : _a[0];
+                details = "StdOut:" + ((_b = output === null || output === void 0 ? void 0 : output.StdOut) === null || _b === void 0 ? void 0 : _b[0]);
                 if (outcome == "Passed") {
                     counts.passed++;
                 }
                 else if (outcome == "Failed") {
                     status = TestStatus.Fail;
                     counts.failed++;
-                    if ('ErrorInfo' in output) {
-                        message = output.ErrorInfo[0].Message;
-                        details = output.ErrorInfo[0].StackTrace + '\n\n' + details;
-                    }
+                    message = (_d = (_c = output === null || output === void 0 ? void 0 : output.ErrorInfo) === null || _c === void 0 ? void 0 : _c[0]) === null || _d === void 0 ? void 0 : _d.Message;
+                    details = "StackTrace:" + ((_f = (_e = output === null || output === void 0 ? void 0 : output.ErrorInfo) === null || _e === void 0 ? void 0 : _e[0]) === null || _f === void 0 ? void 0 : _f.StackTrace) + '\n' + details;
                 }
                 else {
                     status = TestStatus.Pass;
