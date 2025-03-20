@@ -657,6 +657,9 @@ function parseFile(filename) {
         if (xml.testsuites || xml.testsuite) {
             return yield parseJunitXml(xml);
         }
+        if (xml.TestRun) {
+            return yield parseTrx(xml);
+        }
         throw new Error(`unknown test file type for '${filename}'`);
     });
 }
