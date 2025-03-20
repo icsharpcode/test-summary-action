@@ -131,7 +131,7 @@ const lookup = {
     ">": "&gt;"
 };
 function escapeHTML(s) {
-    return s.replace(/[&"'<>]/g, c => lookup[c]);
+    return String(s).replace(/[&"'<>]/g, c => lookup[c] || c);
 }
 exports["default"] = escapeHTML;
 
