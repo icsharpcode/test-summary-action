@@ -41,7 +41,7 @@ describe("trx", async () => {
 
         expect(result.suites[0].cases[0].status).to.eql(TestStatus.Pass)
         expect(result.suites[0].cases[0].name).to.eql("AddingSeveralNumbers_40")
-        expect(result.suites[0].cases[0].details).to.eql(`
+        expect(result.suites[0].cases[0].details).to.eql(`StdOut:
           Given I have entered 40 into the calculator
           -> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(40) (0.0s)
           And I have entered 50 into the calculator
@@ -53,7 +53,7 @@ describe("trx", async () => {
         `)
         expect(result.suites[0].cases[1].status).to.eql(TestStatus.Pass)
         expect(result.suites[0].cases[1].name).to.eql("AddingSeveralNumbers_60")
-        expect(result.suites[0].cases[1].details).to.eql(`
+        expect(result.suites[0].cases[1].details).to.eql(`StdOut:
           Given I have entered 60 into the calculator
           -> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(60) (0.0s)
           And I have entered 70 into the calculator
@@ -65,7 +65,7 @@ describe("trx", async () => {
         `)
         expect(result.suites[0].cases[2].status).to.eql(TestStatus.Pass)
         expect(result.suites[0].cases[2].name).to.eql("AddTwoNumbers")
-        expect(result.suites[0].cases[2].details).to.eql(`
+        expect(result.suites[0].cases[2].details).to.eql(`StdOut:
           Given I have entered 50 into the calculator
           -> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(50) (0.0s)
           And I have entered 70 into the calculator
@@ -77,7 +77,7 @@ describe("trx", async () => {
         `)
         expect(result.suites[0].cases[3].status).to.eql(TestStatus.Fail)
         expect(result.suites[0].cases[3].name).to.eql("FailToAddTwoNumbers")
-        expect(result.suites[0].cases[3].details).to.eql(`
+        expect(result.suites[0].cases[3].details).to.eql(`StackTrace:
             at Pickles.TestHarness.MSTest.Steps.ThenTheResultShouldBePass(Int32 result) in C:\\dev\\pickles-results-harness\\Pickles.TestHarness\\Pickles.TestHarness.MSTest\\Steps.cs:line 28
             at lambda_method(Closure , IContextManager , Int32 )
             at TechTalk.SpecFlow.Bindings.MethodBinding.InvokeAction(IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
@@ -89,8 +89,7 @@ describe("trx", async () => {
             at Pickles.TestHarness.MSTest.AdditionFeature.ScenarioCleanup() in C:\\dev\\pickles-results-harness\\Pickles.TestHarness\\Pickles.TestHarness.MSTest\\Addition.feature.cs:line 0
             at Pickles.TestHarness.MSTest.AdditionFeature.FailToAddTwoNumbers() in c:\\dev\\pickles-results-harness\\Pickles.TestHarness\\Pickles.TestHarness.MSTest\\Addition.feature:line 18
           
-
-
+StdOut:
           Given I have entered 50 into the calculator
           -> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(50) (0.0s)
           And I have entered -1 into the calculator

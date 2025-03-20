@@ -333,11 +333,8 @@ export async function parseTrx(xml: any): Promise<TestResult> {
             let message: string | undefined = undefined
             let details: string = ""
 
-            const output = item.Output[0]
-
-            if ('StdOut' in output) {
-                details = output.StdOut[0]
-            }
+            const output = item?.Output?.[0]
+            details = "StdOut:" + output?.StdOut?.[0]
 
             if (outcome == "Passed") {
                 counts.passed++
@@ -345,10 +342,8 @@ export async function parseTrx(xml: any): Promise<TestResult> {
                 status = TestStatus.Fail
                 counts.failed++
 
-                if ('ErrorInfo' in output) {
-                    message = output.ErrorInfo[0].Message
-                    details = output.ErrorInfo[0].StackTrace + '\n\n' + details
-                }
+                message = output?.ErrorInfo?.[0]?.Message
+                details = "StackTrace:" + output?.ErrorInfo?.[0]?.StackTrace + '\n' + details
             } else {
                 status = TestStatus.Pass
                 counts.skipped++
